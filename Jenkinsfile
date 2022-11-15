@@ -4,8 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'build succesfully'
+               sh 'mvn clean package'
             }
+            post{
+                 success{
+                     echo"Archiving the Artifacts"  
+                     archiveArtifacts artifacts: '**/target/*.war'
         }
       stages {
         stage('Deloy') {
